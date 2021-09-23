@@ -1,2 +1,2 @@
-# blockchain-developer-bootcamp-final-project
-Consensys Blockchain Developer BootCamp Final Project
+# Consensys Blockchain Developer BootCamp Final Project
+
