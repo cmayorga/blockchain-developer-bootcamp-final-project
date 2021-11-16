@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    font-size:12px;
+    /*letter-spacing: 2px;*/
+    text-align: center;    
+}
+
+@keyframes blinker {
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+.countdown-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.countdown-extra-BJ{
+    font-size: 10px;
+    color:green;
+    animation: blinker 1.5s linear infinite;
+}
+
+.countdown-item {
+    color: #111;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 30px;
+    margin: 10px;
+    padding-top: 10px;
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.countdown-item span {
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;    
+}
+
+.countdown-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+}
