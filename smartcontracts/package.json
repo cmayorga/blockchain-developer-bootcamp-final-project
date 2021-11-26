@@ -1,10 +1,10 @@
 {
-  "name": "YTHORewards",
+  "name": "CONSRewards",
   "version": "0.0.1",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:cmayorga/YTHOFinance.git"
+    "url": "git@github.com:cmayorga/blockchain-developer-bootcamp-final-project"
   },
   "license": "MIT",
   "dependencies": {
@@ -44,7 +44,7 @@
     "lint:sol:fix": "solium -d . --fix",
     "lint": "npm run lint:js && npm run lint:sol",
     "lint:fix": "npm run lint:js:fix && npm run lint:sol:fix",
-    "dist": "truffle-flattener ./contracts/YTHORewards.sol > YTHORewards.full.sol && solcjs --bin --abi --optimize YTHORewards.full.sol && mv YTHORewards.bin YTHORewards.full.bin && mv YTHORewards_full_sol_YTHORewards.abi YTHORewards.full.abi && rm *_sol_*",
-    "dist-win": "truffle-flattener ./contracts/YTHORewards.sol > YTHORewards.full.sol && solcjs --bin --abi --optimize YTHORewards.full.sol && move YTHORewards_full_sol_YTHORewards.abi YTHORewards.full.abi && del *_sol_*"
+    "dist": "truffle-flattener ./contracts/CONSRewards.sol > CONSRewards.full.sol && solcjs --bin --abi --optimize CONSRewards.full.sol && mv CONSRewards.bin CONSRewards.full.bin && mv CONSRewards_full_sol_CONSRewards.abi CONSRewards.full.abi && rm *_sol_*",
+    "dist-win": "truffle-flattener ./contracts/CONSRewards.sol > CONSRewards.full.sol && solcjs --bin --abi --optimize CONSRewards.full.sol && move CONSRewards_full_sol_CONSRewards.abi CONSRewards.full.abi && del *_sol_*"
   }
 }

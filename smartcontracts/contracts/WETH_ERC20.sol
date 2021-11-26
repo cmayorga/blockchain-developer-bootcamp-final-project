@@ -1,6 +1,6 @@
 
 //
-//       CARLOS ERC20 Token, reward token for https://consensys-cmayorga-project.herokuapp.com/
+//       WETH ERC20 Token, reward token for https://consensys-cmayorga-project.herokuapp.com/
 //       Developed by: Carlos Mayorga https://github.com/cmayorga
 //
 
@@ -53,7 +53,7 @@ contract ERC20 is Context, IERC20 {
     }
     function transferFrom(address sender, address recipient, uint amount) public returns (bool) {
         _transfer(sender, recipient, amount);
-        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "CARLOS ERC20: transfer amount exceeds allowance"));
+        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "WETH ERC20: transfer amount exceeds allowance"));
         return true;
     }
     function increaseAllowance(address spender, uint addedValue) public returns (bool) {
@@ -61,34 +61,34 @@ contract ERC20 is Context, IERC20 {
         return true;
     }
     function decreaseAllowance(address spender, uint subtractedValue) public returns (bool) {
-        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "CARLOS ERC20: decreased allowance below zero"));
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "WETH ERC20: decreased allowance below zero"));
         return true;
     }
     function _transfer(address sender, address recipient, uint amount) internal {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
 
-        _balances[sender] = _balances[sender].sub(amount, "CARLOS ERC20: transfer amount exceeds balance");
+        _balances[sender] = _balances[sender].sub(amount, "WETH ERC20: transfer amount exceeds balance");
         _balances[recipient] = _balances[recipient].add(amount);
         emit Transfer(sender, recipient, amount);
     }
     function _mint(address account, uint amount) internal {
-        require(account != address(0), "CARLOS ERC20: mint to the zero address");
+        require(account != address(0), "WETH ERC20: mint to the zero address");
 
         _totalSupply = _totalSupply.add(amount);
         _balances[account] = _balances[account].add(amount);
         emit Transfer(address(0), account, amount);
     }
     function _burn(address account, uint amount) internal {
-        require(account != address(0), "CARLOS ERC20: burn from the zero address");
+        require(account != address(0), "WETH ERC20: burn from the zero address");
 
-        _balances[account] = _balances[account].sub(amount, "CARLOS ERC20: burn amount exceeds balance");
+        _balances[account] = _balances[account].sub(amount, "WETH ERC20: burn amount exceeds balance");
         _totalSupply = _totalSupply.sub(amount);
         emit Transfer(account, address(0), amount);
     }
     function _approve(address owner, address spender, uint amount) internal {
-        require(owner != address(0), "CARLOS ERC20: approve from the zero address");
-        require(spender != address(0), "CARLOS ERC20: approve to the zero address");
+        require(owner != address(0), "WETH ERC20: approve from the zero address");
+        require(spender != address(0), "WETH ERC20: approve to the zero address");
 
         _allowances[owner][spender] = amount;
         emit Approval(owner, spender, amount);
@@ -196,7 +196,7 @@ library SafeERC20 {
     }
 }
 
-contract CARLOS is ERC20, ERC20Detailed{
+contract WETH is ERC20, ERC20Detailed{
 
     using SafeERC20 for IERC20;
     using Address for address;
@@ -205,7 +205,7 @@ contract CARLOS is ERC20, ERC20Detailed{
     address public governance;
     mapping (address => bool) public minters;
 
-    constructor () public ERC20Detailed("CARLOS", "CARLOS", 18) {
+    constructor () public ERC20Detailed("WETH", "WETH", 18) {
         governance = msg.sender;
     }
 

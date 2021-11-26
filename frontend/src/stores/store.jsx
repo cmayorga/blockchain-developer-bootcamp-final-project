@@ -112,7 +112,7 @@ class Store {
       proposals: [
       ],
       claimableAsset: {
-        id: 'brads',
+        id: 'carlos',
         name: 'CARLOS',
         address: config.CARLOSAddress,
         abi: config.CARLOSABI,
@@ -152,16 +152,16 @@ class Store {
         */
         {
           id: 'Uniswap',
-          name: 'ETH / CONS Liquidity Pool @ Uniswap',
+          name: 'CONS Staking and get CARLOS rewards',
           website: 'Uniswap',
           link: 'https://app.uniswap.org/#/swap?inputCurrency=0x19810559df63f19cfe88923313250550edadb743&outputCurrency=ETH',
           stakingName: 'Farm CARLOS from your house',
           depositsEnabled: true,
           tokens: [
             {
-              id: 'ythoethlp',
+              id: 'cons',
               address: config.LPUNIV2Address,
-              symbol: 'UNI-V2',
+              symbol: 'CONS',
               abi: config.LPUNIV2ABI,
               decimals: 18,
               rewardsAddress: config.CONSRewardsAddress,

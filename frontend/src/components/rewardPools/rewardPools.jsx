@@ -246,6 +246,7 @@ class RewardPools extends Component {
                         <Typography variant={'h4'} className={classes.walletAddress} noWrap>{address}</Typography>
                     </Card>
                     <row>
+					{/*
                     <Button
                         variant="outlined"
                         color="secondary"
@@ -255,6 +256,7 @@ class RewardPools extends Component {
                         <img height="40" src={UNIlogo}/>&nbsp;&nbsp;
                         <Typography variant={'h4'}>WETH/CONS Liquidity pool</Typography>
                     </Button>
+					/*}
                     {/*}
                     &nbsp;&nbsp;
                     <Button

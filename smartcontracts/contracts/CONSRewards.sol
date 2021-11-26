@@ -1,5 +1,3 @@
-//////////// Remove //TBD before go live
-
 // File: @openzeppelin/contracts/math/Math.sol
 
 pragma solidity ^0.5.0;
@@ -533,7 +531,7 @@ contract LPTokenWrapper {
     //using SafeERC20 for IERC20; //TBD Mainnet should to use SafeERC20
     using Address for address;
 
-    IERC20 public CONSWETH_UniswapV2Pair = IERC20(0x9f0523E2194873227b9D462ed0970a3DeBb634A9); // TBD, change to mainnet UNI-V2 token
+    IERC20 public CONS_token = IERC20(0x69fAe47f4A2d01F66B29e068a62e89e150b9A1d1);
 
     uint256 private _totalSupply;
     mapping(address => uint256) private _balances;
@@ -553,21 +551,21 @@ contract LPTokenWrapper {
         _totalSupply = _totalSupply.add(amount);
         _balances[sender] = _balances[sender].add(amount);
         //if (amount > 0){ //TBD, condition only needed for unit tests
-            //CONSWETH_UniswapV2Pair.safeTransferFrom(sender, address(this), amount);
-            CONSWETH_UniswapV2Pair.transferFrom(sender, address(this), amount);  //TBD, in mainnet SafeERC20, previous line
+            //CONS_token.safeTransferFrom(sender, address(this), amount);
+            CONS_token.transferFrom(sender, address(this), amount);  //TBD, in mainnet SafeERC20, previous line
         //}
     }
 
     function withdraw(uint256 amount) public {
         _totalSupply = _totalSupply.sub(amount);
         _balances[msg.sender] = _balances[msg.sender].sub(amount);
-        //CONSWETH_UniswapV2Pair.safeTransfer(msg.sender, amount);
-        CONSWETH_UniswapV2Pair.transfer(msg.sender, amount); //TBD, in mainnet SafeERC20, previous line
+        //CONS_token.safeTransfer(msg.sender, amount);
+        CONS_token.transfer(msg.sender, amount); //TBD, in mainnet SafeERC20, previous line
     }
 }
 
 contract CONSRewards is LPTokenWrapper, Ownable {
-    IERC20 public CARLOS = IERC20(0x44c20d6869eC46B78e76bD9c051518476a9bbdC0); //TBD change to real address
+    IERC20 public CARLOS = IERC20(0xC37F866b567127b2933781F6c5572389291cbE99); //TBD change to real address
 
     uint256 public constant DURATION = 7 days;  //TBD --> 7 days
     uint256 public currentEpochReward;
