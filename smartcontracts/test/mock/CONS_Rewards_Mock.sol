@@ -4,8 +4,8 @@ import "../../contracts/CONSRewards.sol";
 
 contract CONS_Rewards_Mock is CONSRewards {
 
-    constructor(IERC20 uniswapV2TokenMock, IERC20 carlosTokenMock) public {
-        CONSWETH_UniswapV2Pair = uniswapV2TokenMock;
+    constructor(IERC20 stakingToken, IERC20 carlosTokenMock) public {
+        CONS = stakingToken;
         CARLOS = carlosTokenMock;
     }
 

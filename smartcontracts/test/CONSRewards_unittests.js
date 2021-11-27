@@ -1,7 +1,7 @@
 const { BN, time } = require('openzeppelin-test-helpers');
 const { expect } = require('chai');
 
-const CONSLP_UNI_V2 = artifacts.require('CONS_LP_UNI_V2_Mock');
+const CONS = artifacts.require('CONS_Mock');
 const CARLOS = artifacts.require('CARLOS_Mock');
 const CONSRewards = artifacts.require('CONS_Rewards_Mock');
 
@@ -51,22 +51,22 @@ require('chai').use(function (chai, utils) {
 contract('CONSRewards', function ([_, wallet1, wallet2, wallet3, wallet4]) {
     describe('CONSRewards', async function () {
         beforeEach(async function () {
-            this.CONSLP_UNI_V2 = await CONSLP_UNI_V2.new();
+            this.CONS = await CONS.new();
             this.CARLOS = await CARLOS.new({from: _ });
-            this.pool = await CONSRewards.new(this.CONSLP_UNI_V2.address, this.CARLOS.address);
+            this.pool = await CONSRewards.new(this.CONS.address, this.CARLOS.address);
 
             await this.CARLOS.addMinter(this.pool.address, { from: _ });
             await this.CARLOS.renounceMinter({ from: _ });
 
-            await this.CONSLP_UNI_V2.mint(wallet1, web3.utils.toWei('1000'));
-            await this.CONSLP_UNI_V2.mint(wallet2, web3.utils.toWei('1000'));
-            await this.CONSLP_UNI_V2.mint(wallet3, web3.utils.toWei('1000'));
-            await this.CONSLP_UNI_V2.mint(wallet4, web3.utils.toWei('1000'));
+            await this.CONS.mint(wallet1, web3.utils.toWei('1000'));
+            await this.CONS.mint(wallet2, web3.utils.toWei('1000'));
+            await this.CONS.mint(wallet3, web3.utils.toWei('1000'));
+            await this.CONS.mint(wallet4, web3.utils.toWei('1000'));
 
-            await this.CONSLP_UNI_V2.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet1 });
-            await this.CONSLP_UNI_V2.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet2 });
-            await this.CONSLP_UNI_V2.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet3 });
-            await this.CONSLP_UNI_V2.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet4 });
+            await this.CONS.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet1 });
+            await this.CONS.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet2 });
+            await this.CONS.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet3 });
+            await this.CONS.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet4 });
            
             this.started = (await time.latest()).addn(10);
             await timeIncreaseTo(this.started);

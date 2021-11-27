@@ -531,7 +531,7 @@ contract LPTokenWrapper {
     //using SafeERC20 for IERC20; //TBD Mainnet should to use SafeERC20
     using Address for address;
 
-    IERC20 public CONS_token = IERC20(0x69fAe47f4A2d01F66B29e068a62e89e150b9A1d1);
+    IERC20 public CONS = IERC20(0x69fAe47f4A2d01F66B29e068a62e89e150b9A1d1);
 
     uint256 private _totalSupply;
     mapping(address => uint256) private _balances;
@@ -551,16 +551,16 @@ contract LPTokenWrapper {
         _totalSupply = _totalSupply.add(amount);
         _balances[sender] = _balances[sender].add(amount);
         //if (amount > 0){ //TBD, condition only needed for unit tests
-            //CONS_token.safeTransferFrom(sender, address(this), amount);
-            CONS_token.transferFrom(sender, address(this), amount);  //TBD, in mainnet SafeERC20, previous line
+            //CONS.safeTransferFrom(sender, address(this), amount);
+            CONS.transferFrom(sender, address(this), amount);  //TBD, in mainnet SafeERC20, previous line
         //}
     }
 
     function withdraw(uint256 amount) public {
         _totalSupply = _totalSupply.sub(amount);
         _balances[msg.sender] = _balances[msg.sender].sub(amount);
-        //CONS_token.safeTransfer(msg.sender, amount);
-        CONS_token.transfer(msg.sender, amount); //TBD, in mainnet SafeERC20, previous line
+        //CONS.safeTransfer(msg.sender, amount);
+        CONS.transfer(msg.sender, amount); //TBD, in mainnet SafeERC20, previous line
     }
 }
 
@@ -659,7 +659,7 @@ contract CONSRewards is LPTokenWrapper, Ownable {
     }
 
     function addExtraReward(uint256 extrareward) external onlyOwner checkStart rewardSystemActive {        
-        extraEpochReward = extraEpochReward.add(extrareward); /
+        extraEpochReward = extraEpochReward.add(extrareward);
         notifyAddedReward();
     }
 
