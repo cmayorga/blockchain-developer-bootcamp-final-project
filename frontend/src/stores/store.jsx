@@ -160,9 +160,9 @@ class Store {
           tokens: [
             {
               id: 'cons',
-              address: config.LPUNIV2Address,
+              address: config.CONSAddress,
               symbol: 'CONS',
-              abi: config.LPUNIV2ABI,
+              abi: config.CONSABI,
               decimals: 18,
               rewardsAddress: config.CONSRewardsAddress,
               rewardsABI: config.CONSRewardsABI,
