@@ -4,6 +4,8 @@ My public ETH address to receive NFT certificate: 0xcc44de3f360216B65130A124C716
 
 Project is deployed and running at https://cmayorgaconsensys.surge.sh/
 
+Video screencast is available at https://www.loom.com/share/cce704bf6eac483a81702f9cddf2248b
+
 The project is a simple farming system where the user can stake his CONS tokens to receive CARLOS tokens as rewards.
 
 I used well know libraries from openzeppelin both for contracts and for unit tests. To simplify libraries have been flattened using truffle-flattener in one unique file to make it readable.
