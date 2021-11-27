@@ -4,7 +4,7 @@ My public ETH address to receive NFT certificate: 0xcc44de3f360216B65130A124C716
 
 Project is deployed and running at https://cmayorgaconsensys.surge.sh/
 
-Video screencast is available at https://www.loom.com/share/cce704bf6eac483a81702f9cddf2248b
+Video screencast is available at https://www.loom.com/share/e8b002ad9bf8400885d0ebc7f1782d34
 
 The project is a simple farming system where the user can stake his CONS tokens to receive CARLOS tokens as rewards.
 
