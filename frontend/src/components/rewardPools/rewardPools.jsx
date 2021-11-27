@@ -262,7 +262,7 @@ class RewardPools extends Component {
                     <Button
                         variant="outlined"
                         color="secondary"
-                        href={config.ythoswap}
+                        href={config.carlosswap}
                         target="_blank"
                     >
                         <img height="40" src={UNIlogo}/>&nbsp;&nbsp;
