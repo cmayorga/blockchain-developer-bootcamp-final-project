@@ -2,7 +2,7 @@
 
 My public ETH address to receive NFT certificate: 0xcc44de3f360216B65130A124C716D7AA98407BCb
 
-Project is deployed at https://cmayorgaconsensys.surge.sh/
+Project is deployed and running at https://cmayorgaconsensys.surge.sh/
 
 The project is a simple farming system where the user can stake his CONS tokens to receive CARLOS tokens as rewards.
 

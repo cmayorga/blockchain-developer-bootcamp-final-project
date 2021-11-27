@@ -1,3 +1,7 @@
+/// @title Consensys final project. Staking and farming system
+/// @author Carlos Mayorga
+
+
 // File: @openzeppelin/contracts/math/Math.sol
 
 pragma solidity ^0.5.0;
@@ -544,6 +548,8 @@ contract LPTokenWrapper {
         return _balances[account];
     }
 
+	/// @notice This function allow user to stake his CONS tokens
+	/// @dev in mainnet we should to uncoment function by safeTransferFrom, in testnets you can get revert errors
     function stake(uint256 amount) public {
         address sender = msg.sender;
         require(!address(sender).isContract(), "plz farm by hand");
@@ -556,6 +562,8 @@ contract LPTokenWrapper {
         //}
     }
 
+	/// @notice This function allow user to withdraw (unstake) his CONS tokens
+	/// @dev in mainnet we should to uncoment function by safeTransferFrom, in testnets you can get revert errors
     function withdraw(uint256 amount) public {
         _totalSupply = _totalSupply.sub(amount);
         _balances[msg.sender] = _balances[msg.sender].sub(amount);
@@ -564,6 +572,7 @@ contract LPTokenWrapper {
     }
 }
 
+/// @notice Contract to manage and calculate rewards
 contract CONSRewards is LPTokenWrapper, Ownable {
     IERC20 public CARLOS = IERC20(0xC37F866b567127b2933781F6c5572389291cbE99); //TBD change to real address
 
@@ -588,6 +597,8 @@ contract CONSRewards is LPTokenWrapper, Ownable {
     event Withdrawn(address indexed user, uint256 amount);
     event RewardPaid(address indexed user, uint256 reward);
 
+	/// @notice This modifier will update rewards earned calculated as percentage of the total value locked
+	/// @param account: The address of the user
     modifier updateReward(address account) {
         if (!rewardSystemFinished){
             rewardPerTokenStored = rewardPerToken();
@@ -600,10 +611,12 @@ contract CONSRewards is LPTokenWrapper, Ownable {
         _;
     }
 
+	/// @notice This function is used to calculate which is the last date from we are calculating rewards
     function lastTimeRewardApplicable() public view returns (uint256) {
         return Math.min(block.timestamp, periodFinish);
     }
 
+	/// @notice This function calculate how CARLOS reward token are distributed based on total supply and total value locked
     function rewardPerToken() public view returns (uint256) {
         if (totalSupply() == 0) {
             return rewardPerTokenStored;
@@ -618,6 +631,8 @@ contract CONSRewards is LPTokenWrapper, Ownable {
         );
     }
 
+	/// @notice This function is used to show in frontend how much an user is earning at any time
+	/// @param account: The address of the user
     function earned(address account) public view returns (uint256) {
         return
             balanceOf(account)
@@ -626,27 +641,35 @@ contract CONSRewards is LPTokenWrapper, Ownable {
                 .add(rewards[account]);
     }
 
+	/// @notice This function is used to tell user how much he has earned plus accumulated rewards
+	/// @param account: The address of the user
     function stakingPower(address account) public view returns (uint256) {
         return accumulatedStakingPower[account].add(earned(account));
     }
 
+	/// @notice This function is used to allow user to stake tokens
+	/// @param account: The address of the user
     function stake(uint256 amount) public updateReward(msg.sender) checkNextEpoch checkStart {
         require(amount > 0, "Cannot stake 0");
         super.stake(amount);        
         emit Staked(msg.sender, amount);  
     }
 
+	/// @notice This function is used to allow user to unstake tokens
+	/// @param amount: The amount of CONS token to unstake
     function withdraw(uint256 amount) public updateReward(msg.sender) {
         require(amount > 0, "Cannot withdraw 0");
         super.withdraw(amount);
         emit Withdrawn(msg.sender, amount);
     }
 
+	/// @notice This function is used to allow user to exit farm (unstake + claim pendant rewards)
     function exit() external {
         withdraw(balanceOf(msg.sender));
         getReward();
     }
 
+	/// @notice This function is used to allow user to claim pendant rewards
     function getReward() public updateReward(msg.sender) checkStart checkNextEpoch{
         uint256 reward = earned(msg.sender);
         if (reward > 0) {
@@ -658,11 +681,14 @@ contract CONSRewards is LPTokenWrapper, Ownable {
         }
     }
 
+	/// @notice This is an extra function to allow owner to gift some extra tokens to weekly drop, optional
+	/// @param extraReward: the added amount to rewards, in wei
     function addExtraReward(uint256 extrareward) external onlyOwner checkStart rewardSystemActive {        
         extraEpochReward = extraEpochReward.add(extrareward);
         notifyAddedReward();
     }
 
+	/// @notice This is a modifier to check if a period (week) has finished and reduce 5% rewards for next week to incetivate stakers
     modifier checkNextEpoch() {       
         blockts = block.timestamp;  //TBD - only for unit tests
         if (block.timestamp >= periodFinish && !rewardSystemFinished) {
@@ -684,19 +710,24 @@ contract CONSRewards is LPTokenWrapper, Ownable {
         _;
     }
 
+	/// @notice This is a modifier to check if the farm has started
     modifier checkStart() {
         require(block.timestamp > starttime, "not start");
         require(periodFinish > 0, "Pool has not started");        
         _;
     }
 
+	/// @notice This is a modifier to check if the farm has finished
     modifier rewardSystemActive(){
         require(!rewardSystemFinished, "Farming is finished yet");
         _;
     }
 
+	/// @notice Together with addExtraReward will notify contract to update rewards distribution calculations with new added tokens
     function notifyAddedReward() internal onlyOwner updateReward(address(0)) checkNextEpoch{}
     
+	/// @notice External function called from daemon weekly to add new rewards drop to the farm for next week
+	/// @param reward: The amount of rewards for this drop
     function notifyRewardAmount(uint256 reward) external onlyOwner updateReward(address(0)) {
         require(periodFinish == 0, "Only can call once to start staking");  //TBD Remove comments, For Reset rewarding at Ropsten
         starttime = block.timestamp;
@@ -710,6 +741,8 @@ contract CONSRewards is LPTokenWrapper, Ownable {
         emit RewardAdded(currentEpochReward);
     }
 
+	/// @notice Emergency function to pause/unpause farm
+	/// @param finished: bool to pause or restart
     function setFarmingFinished(bool finished) external onlyOwner{  //TBD remove this, as is automatic to true once rewards fall below 1
         lastUpdateTime = block.timestamp;  
         rewardSystemFinished = finished;
