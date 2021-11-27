@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import {withStyles} from '@material-ui/core/styles';
 import CARLOSlogo from '../../assets/carlos_logo.jpg';
-import UNIlogo from '../../assets/uniswap.png';
 import {
     Typography,
     Button,
@@ -245,32 +244,6 @@ class RewardPools extends Component {
                         <div style={{background: '#DC6BE5', opacity: '1', borderRadius: '10px', width: '10px', height: '10px', marginRight: '3px', marginTop: '3px', marginLeft: '6px'}}></div>
                         <Typography variant={'h4'} className={classes.walletAddress} noWrap>{address}</Typography>
                     </Card>
-                    <row>
-					{/*
-                    <Button
-                        variant="outlined"
-                        color="secondary"
-                        href={config.uniswappool}
-                        target="_blank"
-                    >
-                        <img height="40" src={UNIlogo}/>&nbsp;&nbsp;
-                        <Typography variant={'h4'}>WETH/CONS Liquidity pool</Typography>
-                    </Button>
-					/*}
-                    {/*}
-                    &nbsp;&nbsp;
-                    <Button
-                        variant="outlined"
-                        color="secondary"
-                        href={config.carlosswap}
-                        target="_blank"
-                    >
-                        <img height="40" src={UNIlogo}/>&nbsp;&nbsp;
-                        <Typography variant={'h4'}>Swap for CONS</Typography>
-                    </Button>   
-                    */}
-                    </row>                 
-
                     <div className={classes.rewardPools}>
                         {
                             this.renderRewards()
@@ -287,7 +260,7 @@ class RewardPools extends Component {
         const {rewardPools, governanceContractVersion} = this.state
 
         return rewardPools.filter((rewardPool) => {
-            if (['Uniswap', 'Balancer', 'PoolC', 'PoolD'].includes(rewardPool.id)) {
+            if (['CONSFarm'].includes(rewardPool.id)) {
                 return true
             } else {
                 return false

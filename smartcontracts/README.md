@@ -1,6 +1,6 @@
 # CONSRewards
 
-Staking pool for Uniswap CONS/WETH liquidity token for receiving 69000 CARLOS weekly reward halving at 5%
+Staking pool for CONS token for receiving 69000 CARLOS weekly reward halving at 5%
 
 yarn
 

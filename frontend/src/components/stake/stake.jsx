@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
-import UNIlogo from '../../assets/uniswap.png';
 import {
   Typography,
   Button,
@@ -564,7 +563,7 @@ class Stake extends Component {
 
     return (
       <div className={ classes.actions }>
-        <Typography className={ classes.stakeTitle } variant={ 'h3'}>Unstake your UNI-V2 tokens</Typography>
+        <Typography className={ classes.stakeTitle } variant={ 'h3'}>Unstake your CONS tokens</Typography>
         { this.renderAssetInput(asset, 'unstake') }
         <div className={ classes.stakeButtons }>
           <Button
