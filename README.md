@@ -65,4 +65,4 @@ in other terminal run:
 
 ## Test Results
 
-testresult.txt
+https://github.com/cmayorga/blockchain-developer-bootcamp-final-project/blob/main/testresults.txt
