@@ -1,4 +1,8 @@
-# BOOTCAMP CONS finance
+# BOOTCAMP Consensys Final Project . finance
+
+My public ETH address to receive NFT certificate: 0xcc44de3f360216B65130A124C716D7AA98407BCb
+
+Project is deployed at https://cmayorgaconsensys.surge.sh/
 
 The project is a simple farming system where the user can stake his CONS tokens to receive CARLOS tokens as rewards.
 
@@ -43,3 +47,37 @@ Minter added tx: https://ropsten.etherscan.io/tx/0x84b87dbf277bee8aaf8903e07f30d
 Next step is to start the farm, so we execute notifyRewardAmount at CONSReward contract by owner
 
 tx: https://ropsten.etherscan.io/tx/0x681f1ef1062ac834f5f323ecd4671f844d58410b2a29a78ded6402a19f9e0667
+
+## Run frontend
+
+<code>cd frontend</code>
+
+<code>yarn</code>
+
+<code>yarn start</code>
+
+### Deploy at surge.sh
+
+<code>npm install --global surge</code>
+
+<code>cd frontend</code>
+
+<code>yarn build</code>
+
+<code>cd build</code>
+
+<code>cp index.html 200.html</code>
+
+<code>surge</code>
+
+## Run tests
+
+Tests will run several checks with several accounts doing stake, unstake, claim and exits and getting rewards accordly to the time staked.
+
+<code>cd smartcontracts</code>
+
+<code>yarn ganache-cli</code>   (This will run ganache-cli with 10 funded accounts)
+
+in other terminal run:
+
+<code>yarn test</code> (or <code>yarn test-win </code> if you are using windows)
