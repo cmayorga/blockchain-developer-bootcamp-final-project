@@ -567,12 +567,12 @@ contract LPTokenWrapper {
 contract CONSRewards is LPTokenWrapper, Ownable {
     IERC20 public CARLOS = IERC20(0xC37F866b567127b2933781F6c5572389291cbE99); //TBD change to real address
 
-    uint256 public constant DURATION = 7 days;  //TBD --> 7 days
+    uint256 public constant DURATION = 7 days; 
     uint256 public currentEpochReward;
     uint256 public fixedCurrentEpochReward;
     uint256 public extraEpochReward = 0;
     uint256 public totalAccumulatedReward = 0;        
-    uint256 public starttime = block.timestamp;  //TBD, is ok?
+    uint256 public starttime = block.timestamp;
     uint256 public periodFinish = 0;
     bool public rewardSystemFinished = false;
     uint256 public blockts = block.timestamp;  //TBD --> no needed, for unit tests
@@ -658,9 +658,8 @@ contract CONSRewards is LPTokenWrapper, Ownable {
         }
     }
 
-    function addExtraReward(uint256 extrareward) external onlyOwner checkStart rewardSystemActive {
-        //CARLOS transferred weekly from htttps://blackjack.ytho.online house winnnings
-        extraEpochReward = extraEpochReward.add(extrareward); //TBD, hay que hacer una transfer (comprobar > 0) desde el daemon previa, y si success llamar a esta
+    function addExtraReward(uint256 extrareward) external onlyOwner checkStart rewardSystemActive {        
+        extraEpochReward = extraEpochReward.add(extrareward); /
         notifyAddedReward();
     }
 

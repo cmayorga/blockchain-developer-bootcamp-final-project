@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import {withStyles} from '@material-ui/core/styles';
-import CARLOSlogo from '../../assets/brads_logo.png';
+import CARLOSlogo from '../../assets/carlos_logo.jpg';
 import UNIlogo from '../../assets/uniswap.png';
 import {
     Typography,
@@ -279,9 +279,6 @@ class RewardPools extends Component {
                     <hr />
                     {modalOpen && this.renderModal()}
                 </div>
-                <center>
-                <small>(This project is in beta.... please use at your own risk)</small>
-                </center>
             </div>            
         )
     }

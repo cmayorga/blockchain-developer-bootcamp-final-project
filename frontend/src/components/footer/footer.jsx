@@ -42,10 +42,10 @@ const styles = theme => ({
     width: '100%'
   },
   webName: {    
-    fontFamily: 'ReklameScript',
+    fontFamily: 'Arial',
     fontSize: '60px',
     marginTop: '-50px',
-    color: '#ff5ef7',
+    color: '#000000',
     textShadow: '2px 2px #ff0000',
   },  
   footerText: {
@@ -89,7 +89,7 @@ class Footer extends Component {
           <Link to={"/"} className={ classes.link }>            
             &nbsp;
             <Typography className={ classes.webName } variant={ 'h6'}>              
-              CONS finance
+              Consensys Final Project.finance
             </Typography>            
           </Link> 
           {/*

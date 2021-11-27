@@ -3,7 +3,6 @@
 import json
 import web3
 import sys
-import mysql.connector
 from web3 import Web3
 import time;
 from datetime import datetime,timezone
@@ -12,18 +11,9 @@ if len(sys.argv) < 3:
     print("Usage details: rewards_daemon.py owner_address owneraddres_private_key")
     exit()
 
-mydb = mysql.connector.connect(
-  host="127.0.0.1",
-  port="3306",
-  user="ythobj",
-  password="r98SPJnmUfnZzWTt",
-  database="ytho_blackjack"
-)
-
 #CONSUser = "0xFC8d59ed72dc74007131e894cf1Be9Ea9A38C554"
 
-BJ_house_address = "0xF60fD0CeABdc67aD0E11E58ee20F6DF91725281C"
-CONSRewards_address = "0x37632d10812637f96405FFD78d9512791747282c"
+CONSRewards_address = "0xcf87c85097ac3c8af52e8b29bff1fbb38068e35c"
 eth_url = "https://ropsten.infura.io/v3/17aaa2ed017c44edaf69e8859d2cd89c" #CARLOS
 web3 = Web3(Web3.HTTPProvider(eth_url))
 chainId = 3 #Ropsten
@@ -62,19 +52,8 @@ else:
   #exit(1) #debugging
   print(now_utc, " is greater than ", periodFinish, " updating rewards")
 
-  mycursor = mydb.cursor()
-  qry = "SELECT balance"+str(chainId)+" FROM users WHERE address='"+BJ_house_address+"'"
-  mycursor.execute(qry)
-  myresult = mycursor.fetchall()
-  print("mycursor.rowcount:", mycursor.rowcount)
-  if (mycursor.rowcount <= 0):
-      print("There is not house account (" + BJ_house_address + ") present in database")
-      exit(1)
-  #for x in myresult:  print(x)
-  rewardAmount = myresult[0][0] * 1000000000000000000 #69000
+  rewardAmount = 690000 * 1000000000000000000 #69000
   print("rewardAmount:", rewardAmount)
-  mycursor.execute("UPDATE users SET balance"+str(chainId)+"=0 WHERE address='"+BJ_house_address+"'")
-  mydb.commit()
   transaction = contract.functions.addExtraReward(int(rewardAmount)).buildTransaction({'chainId': chainId, 'gas':200000, 'nonce': web3.eth.getTransactionCount(owner_address)})
   print(transaction)
 
