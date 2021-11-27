@@ -26,6 +26,13 @@ Now we need to add this contract as minter at CARLOS reward token in order to al
 
 Minter added tx: https://ropsten.etherscan.io/tx/0x84b87dbf277bee8aaf8903e07f30dc8fc43ef49ca78dab760ec891991e5f3aad
 
+Next step is to start the farm, so we execute notifyRewardAmount at CONSReward contract by owner
+
+tx: https://ropsten.etherscan.io/tx/0x681f1ef1062ac834f5f323ecd4671f844d58410b2a29a78ded6402a19f9e0667
+
+
+
+
 
 
 
