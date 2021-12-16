@@ -34,7 +34,7 @@
     "truffle-flattener": "^1.3.0"
   },
   "scripts": {
-    "test": "npm run ./scripts/test.sh",
+    "test": "./scripts/test.sh",
     "test-win": "truffle test --network development",
 	"ganache-cli": "scripts/ganache_cli.bat",
     "coverage": "npm run scripts/coverage.sh && cat coverage/lcov.info | coveralls",
