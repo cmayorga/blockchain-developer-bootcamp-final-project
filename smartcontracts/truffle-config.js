@@ -15,7 +15,7 @@ module.exports = {
     },
     coverage: {
       host: 'localhost',
-      port: 7545,
+      port: 8545,
       network_id: '*',
       gas: 6721975,
       gasPrice: 20000000000, // web3.eth.gasPrice

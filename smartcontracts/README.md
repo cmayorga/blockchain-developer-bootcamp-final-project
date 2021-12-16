@@ -8,5 +8,12 @@ Configure network time at truffle-config.js to a date near today
 
 Tests start an instance of ganache-cli with 10 new accounts
 
- yarn ganache-cli
- yarn test (or test-win)
+### Linux
+
+chmod u+x ./scripts/test.sh
+yarn test
+
+### Windows
+
+yarn ganache-cli
+yarn test-win
