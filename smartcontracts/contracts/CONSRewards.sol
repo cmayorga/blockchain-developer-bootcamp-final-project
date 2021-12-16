@@ -648,7 +648,7 @@ contract CONSRewards is LPTokenWrapper, Ownable {
     }
 
 	/// @notice This function is used to allow user to stake tokens
-	/// @param account: The address of the user
+	/// @param amount: The amount in wei to stake
     function stake(uint256 amount) public updateReward(msg.sender) checkNextEpoch checkStart {
         require(amount > 0, "Cannot stake 0");
         super.stake(amount);        
@@ -681,8 +681,8 @@ contract CONSRewards is LPTokenWrapper, Ownable {
         }
     }
 
-	/// @notice This is an extra function to allow owner to gift some extra tokens to weekly drop, optional
-	/// @param extraReward: the added amount to rewards, in wei
+	/// @notice This is an extra to allow owner to do weekly drop, and add extra rewards if desired
+	/// @param extrareward: the added amount to rewards, in wei
     function addExtraReward(uint256 extrareward) external onlyOwner checkStart rewardSystemActive {        
         extraEpochReward = extraEpochReward.add(extrareward);
         notifyAddedReward();
