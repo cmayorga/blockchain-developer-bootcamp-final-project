@@ -1,5 +1,7 @@
 const { BN, time } = require('openzeppelin-test-helpers');
 const { expect } = require('chai');
+const truffleAssert = require('truffle-assertions');
+
 
 const CONS = artifacts.require('CONS_Mock');
 const CARLOS = artifacts.require('CARLOS_Mock');
@@ -50,6 +52,29 @@ require('chai').use(function (chai, utils) {
 
 contract('CONSRewards', function ([_, wallet1, wallet2, wallet3, wallet4]) {
     describe('CONSRewards', async function () {
+
+        it("Should revert with 'Cannot stake 0'", async function () {            
+            this.CONS = await CONS.new();
+            this.CARLOS = await CARLOS.new({from: _ });
+            this.pool = await CONSRewards.new(this.CONS.address, this.CARLOS.address);
+            await this.CARLOS.addMinter(this.pool.address, { from: _ });
+            await this.CARLOS.renounceMinter({ from: _ });
+            await this.CONS.mint(wallet1, web3.utils.toWei('1000'));
+			await this.CONS.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet1 });
+			await truffleAssert.reverts(this.pool.stake(web3.utils.toWei('0'), { from: wallet1 }), "Cannot stake 0");
+        });
+
+        it("Should revert with 'Cannot withdraw 0'", async function () {            
+            this.CONS = await CONS.new();
+            this.CARLOS = await CARLOS.new({from: _ });
+            this.pool = await CONSRewards.new(this.CONS.address, this.CARLOS.address);
+            await this.CARLOS.addMinter(this.pool.address, { from: _ });
+            await this.CARLOS.renounceMinter({ from: _ });
+            await this.CONS.mint(wallet1, web3.utils.toWei('1000'));
+			await this.CONS.approve(this.pool.address, new BN(2).pow(new BN(255)), { from: wallet1 });
+			await truffleAssert.reverts(this.pool.withdraw(web3.utils.toWei('0'), { from: wallet1 }), "Cannot withdraw 0");
+        });
+
         beforeEach(async function () {
             this.CONS = await CONS.new();
             this.CARLOS = await CARLOS.new({from: _ });
@@ -76,7 +101,7 @@ contract('CONSRewards', function ([_, wallet1, wallet2, wallet3, wallet4]) {
 
             await this.pool.notifyRewardAmount(web3.utils.toWei('69000'), { from: _ });
         });
-           
+        
         it('Two stakers with the different (1:3) stakes wait 2 weeks, staker1 entry in half of week1, staker2 exits in half of week2', async function () {
             // 69000 CARLOS per 2 weeks - 5% reduction
             //
@@ -184,6 +209,6 @@ contract('CONSRewards', function ([_, wallet1, wallet2, wallet3, wallet4]) {
                 wkspent++;    
             }
             console.log("Total " + wkspent + " weeks at 5% reduction init in 69000 tokens by week with total minted of " + totalMinted + " CARLOS");
-        });		      
+        });		    
     });
 });
