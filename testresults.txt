@@ -1,32 +1,64 @@
-  Contract: CONSRewards
+yarn run v1.22.5
+$ truffle test --network development
+Using network 'development'.
+
+Compiling your contracts...
+===========================
+> Compiling @openzeppelin\contracts\GSN\Context.sol
+> Compiling @openzeppelin\contracts\access\Roles.sol
+> Compiling @openzeppelin\contracts\access\roles\MinterRole.sol
+> Compiling @openzeppelin\contracts\math\SafeMath.sol
+> Compiling @openzeppelin\contracts\token\ERC20\ERC20.sol
+> Compiling @openzeppelin\contracts\token\ERC20\ERC20Mintable.sol
+> Compiling @openzeppelin\contracts\token\ERC20\IERC20.sol
+> Compiling .\..\..\..\..\Freelancer\YTHOFinance\YTHORewardsSMART_CONTRACTS\contracts\BRADS_ERC20.sol
+> Compiling .\..\..\..\..\Freelancer\YTHOFinance\YTHORewardsSMART_CONTRACTS\contracts\YTHORewards.sol
+> Compiling .\contracts\CARLOS_ERC20.sol
+> Compiling .\contracts\CONSRewards.sol
+> Compiling .\contracts\CONS_ERC20.sol
+> Compiling .\contracts\Migrations.sol
+> Compiling .\test\mock\CARLOS_Mock.sol
+> Compiling .\test\mock\CONS_Mock.sol
+> Compiling .\test\mock\CONS_Rewards_Mock.sol
+> Artifacts written to C:\Users\super\AppData\Local\Temp\test--23192-zAZzuePvpNYO
+> Compiled successfully using:
+   - solc: 0.5.17+commit.d19bba13.Emscripten.clang
+
+Contract: CONSRewards
     CONSRewards
 ========================== New test scenario===================================
-Starting date for simulated rewarding farm: Sat Nov 27 2021 16:39:45 GMT+0100 (hora estándar de Europa central)
+Starting date for simulated rewarding farm: Thu Feb 24 2022 10:51:12 GMT+0100 (hora estándar de Europa central)
+      √ Should revert with 'Cannot stake 0' (6057ms, 3421780 gas)
+========================== New test scenario===================================
+Starting date for simulated rewarding farm: Thu Feb 24 2022 10:52:06 GMT+0100 (hora estándar de Europa central)
+      √ Should revert with 'Cannot withdraw 0' (5998ms, 3370692 gas)
+========================== New test scenario===================================
+Starting date for simulated rewarding farm: Thu Feb 24 2022 10:52:49 GMT+0100 (hora estándar de Europa central)
 Two stakers with the different (1:3) stakes wait 2 weeks, staker1 entry in half of week1, staker2 exits in half of week2
-1x: ....+---+------------+
+1x: ....+---+------------+ 
 3x:         +----+
 Current reward for 1 week: 69000  CARLOS Reward Daily Rate: 11%
-Block ts for 1 week:[ 1638286786 ]   Tue Nov 30 2021 16:39:46 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1638632385 ]  Sat Dec 04 2021 16:39:45 GMT+0100 (hora estándar de Europa central)
+Block ts for 1 week:[ 1645955571 ]   Sun Feb 27 2022 10:52:51 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1646301169 ]  Thu Mar 03 2022 10:52:49 GMT+0100 (hora estándar de Europa central)
 Current reward for 1.5 week: 65550  CARLOS Reward Daily Rate: 11%
-Block ts for 1.5 week:[ 1638805188 ]   Mon Dec 06 2021 16:39:48 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1639409988 ]  Mon Dec 13 2021 16:39:48 GMT+0100 (hora estándar de Europa central)
+Block ts for 1.5 week:[ 1646473975 ]   Sat Mar 05 2022 10:52:55 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1647078775 ]  Sat Mar 12 2022 10:52:55 GMT+0100 (hora estándar de Europa central)
 Current reward for 2 week: 65550  CARLOS Reward Daily Rate: 11%
-Block ts for 2 week:[ 1638805188 ]   Mon Dec 06 2021 16:39:48 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1639409988 ]  Mon Dec 13 2021 16:39:48 GMT+0100 (hora estándar de Europa central)
-      √ Two stakers with the different (1:3) stakes wait 2 weeks, staker1 entry in half of week1, staker2 exits in half of week2 (5481ms, 486865 gas)
+Block ts for 2 week:[ 1646473975 ]   Sat Mar 05 2022 10:52:55 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1647078775 ]  Sat Mar 12 2022 10:52:55 GMT+0100 (hora estándar de Europa central)
+      √ Two stakers with the different (1:3) stakes wait 2 weeks, staker1 entry in half of week1, staker2 exits in half of week2 (9201ms, 486865 gas)
 ========================== New test scenario===================================
-Starting date for simulated rewarding farm: Thu Dec 09 2021 16:40:15 GMT+0100 (hora estándar de Europa central)
+Starting date for simulated rewarding farm: Tue Mar 08 2022 10:53:32 GMT+0100 (hora estándar de Europa central)
 Three stakers with the different (1:3:5) stakes wait 3 weeks
 1x: +----------------+--------+ = 69000/4 = 17250 for 1w   + 65550/9=7283.333333 for 2w       + 62272.5/6=10378.75 for 3w   = Total acc earned 1w2w3w (17250, 24533.33333, 34912.08333)
 3x: +----------------+          = 17250*3=51750 for 1w     + 7283.333333*3=21850 for 2w       + 0 for 3w                    = Total acc earned 1w2w3w (51750, 73600, 0 (exited,not present))
 5x:         +-----------------+ = 0 for 1w                 + 7283.333333*5=36416.66667 for 2w + 10378.75*5=51893.75 for 3w  = Total acc earned 1w2w3w (0, 36416.66667, 88310.41667)
 Current reward for 1 week: 65550  CARLOS Reward Daily Rate: 11%
-Block ts for 1 week:[ 1639669216 ]   Thu Dec 16 2021 16:40:16 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1640274016 ]  Thu Dec 23 2021 16:40:16 GMT+0100 (hora estándar de Europa central)
+Block ts for 1 week:[ 1647338013 ]   Tue Mar 15 2022 10:53:33 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1647942813 ]  Tue Mar 22 2022 10:53:33 GMT+0100 (hora estándar de Europa central)
 Current reward for 2 week: 62272.5  CARLOS Reward Daily Rate: 10%
-Block ts for 2 week:[ 1640274017 ]   Thu Dec 23 2021 16:40:17 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1640878817 ]  Thu Dec 30 2021 16:40:17 GMT+0100 (hora estándar de Europa central)
+Block ts for 2 week:[ 1647942816 ]   Tue Mar 22 2022 10:53:36 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1648547616 ]  Tue Mar 29 2022 11:53:36 GMT+0200 (hora de verano de Europa central)
 Current reward for 3 week: 62272.5  CARLOS Reward Daily Rate: 10%
-Block ts for 3 week:[ 1640274019 ]   Thu Dec 23 2021 16:40:19 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1640878817 ]  Thu Dec 30 2021 16:40:17 GMT+0100 (hora estándar de Europa central)
-      √ Three stakers with the different (1:3:5) stakes wait 3 weeks, wallet 2 exits at end of week 2, wallet 3 entries at week 2 (6636ms, 707940 gas)
+Block ts for 3 week:[ 1647942818 ]   Tue Mar 22 2022 10:53:38 GMT+0100 (hora estándar de Europa central)   Next period at:[ 1648547616 ]  Tue Mar 29 2022 11:53:36 GMT+0200 (hora de verano de Europa central)
+      √ Three stakers with the different (1:3:5) stakes wait 3 weeks, wallet 2 exits at end of week 2, wallet 3 entries at week 2 (11665ms, 707940 gas)
 ========================== New test scenario===================================
-Starting date for simulated rewarding farm: Thu Dec 30 2021 16:40:47 GMT+0100 (hora estándar de Europa central)
+Starting date for simulated rewarding farm: Tue Mar 29 2022 11:54:19 GMT+0200 (hora de verano de Europa central)
 Total 277 weeks at 5% reduction init in 69000 tokens by week with total minted of 1448998.0428120052 CARLOS
       √ List of reduction until 0 (1ms)
 
@@ -37,21 +69,21 @@ Total 277 weeks at 5% reduction init in 69000 tokens by week with total minted o
 ···················|······················|·············|·············|·············|·············|···············
 |  Contract        ·  Method              ·  Min        ·  Max        ·  Avg        ·  # calls    ·  usd (avg)   │
 ···················|······················|·············|·············|·············|·············|···············
-|  CARLOS          ·  addMinter           ·      45819  ·      45831  ·      45827  ·          3  ·           -  │
+|  CARLOS          ·  addMinter           ·          -  ·          -  ·      45831  ·          7  ·           -  │
 ···················|······················|·············|·············|·············|·············|···············
-|  CARLOS          ·  mint                ·      51943  ·      66943  ·      55693  ·         12  ·           -  │
+|  CARLOS          ·  mint                ·      51943  ·      66943  ·      56716  ·         22  ·           -  │
 ···················|······················|·············|·············|·············|·············|···············
 |  CONSRewards     ·  addExtraReward      ·          -  ·          -  ·     103577  ·          1  ·           -  │
 ···················|······················|·············|·············|·············|·············|···············
 |  CONSRewards     ·  exit                ·     177623  ·     212827  ·     195225  ·          2  ·           -  │
 ···················|······················|·············|·············|·············|·············|···············
-|  CONSRewards     ·  notifyRewardAmount  ·          -  ·          -  ·     205844  ·          3  ·           -  │
+|  CONSRewards     ·  notifyRewardAmount  ·          -  ·          -  ·     205844  ·          5  ·           -  │
 ···················|······················|·············|·············|·············|·············|···············
-|  ERC20           ·  approve             ·      43977  ·      43989  ·      43985  ·         12  ·           -  │
+|  ERC20           ·  approve             ·          -  ·          -  ·      43989  ·         22  ·           -  │
 ···················|······················|·············|·············|·············|·············|···············
 |  LPTokenWrapper  ·  stake               ·      98337  ·     199592  ·     140156  ·          5  ·           -  │
 ·------------------|----------------------|-------------|-------------|-------------|-------------|--------------·
 
-  3 passing (1m)
+  5 passing (3m)
 
-Done in 97.28s.
+Done in 235.55s.
